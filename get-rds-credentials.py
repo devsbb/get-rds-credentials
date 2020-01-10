@@ -8,7 +8,7 @@ import sys
 from typing import Dict, List, Optional
 
 GET_INSTANCES_SH = (
-    """sh -c '{aws} rds describe-db-instances | {jq} ".DBInstances[].Endpoint" -c'"""
+    """sh -o pipefail -ec '{aws} rds describe-db-instances | {jq} ".DBInstances[].Endpoint" -c'"""
 )
 GET_CREDENTIALS_COMMAND = """{aws} rds generate-db-auth-token --hostname {hostname} --port {port} --username {username} --region eu-central-1 """
 FZF_COMMAND = """{fzf} --header 'Choose a server to get the credentials'"""
